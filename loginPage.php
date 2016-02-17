@@ -1,9 +1,4 @@
-<?php
-	session_start();
-
-	$uploadMsg = "";						
-	$_SESSION['uploadMsg'] = $uploadMsg;		//creates session variable that will be the message returned after uploading a file
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html>
@@ -18,14 +13,15 @@
     </head>
 	
     <body>
-        <form action = "<?php echo htmlentities( $_SERVER['PHP_SELF'] ); ?>" method = "get">
+        <form action = "<?php echo htmlentities( $_SERVER['PHP_SELF'] ); ?>" method = "POST">
 		<!--self-submitting form so that when incorrect username is entered, returns to same page-->
 			
 			<p>
 				Please enter your username and password.
                 <br>
                 Username: <input type = "text" name = "username"/> 	<!--box to enter username-->
-				Password: <input type = "text" name = "password"/> 	<!--box to enter password-->
+				<br>
+                Password: <input type = "text" name = "password"/> 	<!--box to enter password-->
                 <br>
 				<br>
 				<input type = "submit" value = "Login"/>			<!--login button-->
@@ -33,46 +29,38 @@
 		</form>
 		
 		<?php
-			if (isset ($_GET['username']) && isset ($_GET['password'])) {		//checks a username & password were entered
-                $username = $_GET['username'];			
-				$password = $_GET['password'];
-                
-                $conn = new mysqli("localhost", "php_user", "php_pass", "mod3_newsWebsite");
-				if ($mysqli -> connect_errno) {
-					printf("Connection Failed: %s\n", $mysqli->connect_error);
+			if (isset ($_POST['username']) && isset ($_POST['password'])) {		//checks a username & password were entered
+                $username = $_POST['username'];			
+				$password = $_POST['password'];
+              
+ 
+                //conect to mod3_newsWebsite as php_user
+                require 'php_database.php';
+				
+                $isUser = $mysqli -> prepare ("select username, password
+                                              from login_info
+                                              where username = '$username' and password = '$password'");
+               
+                if (!$isUser) {
+					echo "Select Query Prep Failed: %s\n", $mysqli -> error;
 					exit;
 				}
 				
-                $isUser = mysql_query ("SELECT username, password FROM login_info
-                                       where username = $username and password = $password");
-                if ($isUser) {
-                    $conn = new mysqli("localhost", $username, $password, "mod3_newsWebsite");
-                    if ($mysqli -> connect_errno) {
-						printf("Connection Failed: %s\n", $mysqli->connect_error);
-						exit;
-					}
-                } else {
-                    die("Invalid Login!");
-                }
+				$isUser -> execute();
+				$isUser -> bind_result($usernameResult, $passwordResult);
+				$isUser -> fetch();
+				$isUser -> close();
                 
+                //check that username and password are valid 
+                if ($usernameResult == null && $passwordResult == null) {
+                    echo "Invalid Login. Please try again.";
+                    exit;
+				}
+     
+                $_SESSION['username'] = $username;				//creates and sets the session variable, username
                 
+                header("Location: newsfeedPage.php");		    //redirects to newsfeed
                 
-				
-                while (!feof($file)) {							//checks if at end of file
-                    $isUser = trim(fgets($file));				//if not, gets next valid username from file (& trims whitespace)
-                    
-					if ($isUser == $username) {					//compares inputted username to next valid username 
-                         $_SESSION['username'] = $username;		//creates and sets the session variable, username
-                         header("Location: userFiles.php");		//if inputted username matches, redirects to user's files
-                         exit;
-                    } else {
-                        $lineNum++;								//else increments lineNum to next line in file
-                    }
-                }
-				
-				fclose($file);														//closes file
-				
-				echo "<p> Nice try, sucker!  Please enter a valid username. </p>";	//prints if inputted user name is invalid
             }
 		?>	
     </body>
