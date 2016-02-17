@@ -1,10 +1,14 @@
+<!-- hide password when hidden -->
+
+
+
 <?php session_start(); ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset = "UTF-8">
-        <title>Login</title>
+        <title>LOGIN</title>
 		
 		<style>
 			body { background-color: #9EDDAC; margin-top: 80px; }
@@ -19,9 +23,13 @@
 			<p>
 				Please enter your username and password.
                 <br>
-                Username: <input type = "text" name = "username"/> 	<!--box to enter username-->
+                <br>
+                <label for="password">Username:</label>
+                <input type = "text" name = "username"/> 	<!--box to enter username-->
 				<br>
-                Password: <input type = "text" name = "password"/> 	<!--box to enter password-->
+                <br>
+                <label for="password">Password:</label>
+                <input type = "password" name = "password"/> 	<!--box to enter password-->
                 <br>
 				<br>
 				<input type = "submit" value = "Login"/>			<!--login button-->

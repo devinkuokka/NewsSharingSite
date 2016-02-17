@@ -1,8 +1,15 @@
+<!-- hide password when hidden -->
+<!-- hash password -->
+
+
+
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset = "UTF-8">
-        <title>Sign Up</title>
+        <title>SIGN UP</title>
 		
 		<style>
 			body { background-color: #9EDDAC; margin-top: 80px; }
@@ -15,12 +22,18 @@
 		<!--self-submitting form so that when incorrect username/password is entered, returns to same page-->
 			
 			<p>
-                Enter a Username: <input type = "text" name = "username"/> 			<!--box to enter username-->
+                Please enter a username and password.
 				<br>
 				<br>
-				Enter a Password: <input type = "text" name = "password"/> 			<!--box to enter password-->
+				<label for="username">Username:</label>
+				<input type = "text" name = "username"/> 				<!--box to enter username-->
+				<br>
+				<br>
+				<label for="password">Password:</label>
+				<input type = "password" name = "password"/> 			<!--box to enter password-->
                 <br>
-				Confirm Password: <input type = "text" name = "confirmPassword"/> 	<!--box to confirm password-->
+				<label for="confirmpassword">Confirm Password:</label>
+				<input type = "password" name = "confirmPassword"/> 	<!--box to confirm password-->
                 <br>
 				<br>
 				<input type = "submit" value = "Submit"/>			<!--Submit button-->
@@ -28,16 +41,6 @@
 		</form>
 		
 		<?php
-		
-		
-		
-		
-		// make password hidden when type
-		
-		
-		
-		
-		
 			//check a username, password and confirm password were entered
 			if (isset ($_POST['username']) && isset ($_POST['password']) && isset ($_POST['confirmPassword'])) {		
                 
@@ -78,17 +81,6 @@
 					exit;
 				} 
 				
-				
-				
-				
-				
-				//hash password before adding to table
-				
-				
-				
-				
-				
-					
 				$addUser = $mysqli -> prepare ("insert into login_info (username, password)
 											   values ('$username', '$password')");
 				
