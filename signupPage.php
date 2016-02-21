@@ -1,4 +1,3 @@
-<!-- hide password when hidden -->
 <!-- hash password -->
 
 
@@ -13,7 +12,7 @@
 		
 		<style>
 			body { background-color: #9EDDAC; margin-top: 80px; }
-			p { text-align: center; font-family: Helvetica, Arial, sans-serif; } 
+			p { text-align: center; font-family: Helvetica, Arial, sans-serif; color: #00516B } 
 		</style>
     </head>
 	
@@ -60,7 +59,7 @@
 				//conect to mod3_newsWebsite as php_user		
 				require 'php_database.php';
 				
-				$isNewUser = $mysqli -> prepare ("select login_info.username
+				$isNewUser = $mysqli -> prepare ("select username
 												 from login_info
 												 where username = '$username'");
 				

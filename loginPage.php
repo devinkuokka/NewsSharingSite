@@ -1,7 +1,3 @@
-<!-- hide password when hidden -->
-
-
-
 <?php session_start(); ?>
 
 <!DOCTYPE html>
@@ -11,8 +7,9 @@
         <title>LOGIN</title>
 		
 		<style>
-			body { background-color: #9EDDAC; margin-top: 80px; }
-			p { text-align: center; font-family: Helvetica, Arial, sans-serif; } 
+			body { background-color: #9EDDAC; margin-top: 80px; color: #004055; }
+			p { text-align: center; font-family: Helvetica, Arial, sans-serif; }
+			#warning { color: #C61E1E; }
 		</style>
     </head>
 	
@@ -61,8 +58,12 @@
                 
                 //check that username and password are valid 
                 if ($usernameResult == null && $passwordResult == null) {
-                    echo "Invalid Login. Please try again.";
-                    exit;
+                    printf(
+						"<p id = 'warning'>
+							Invalid Login. Please try again.
+					   </p>"
+					);
+					exit;
 				}
      
                 $_SESSION['username'] = $username;				//creates and sets the session variable, username
