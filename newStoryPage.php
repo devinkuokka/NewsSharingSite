@@ -16,22 +16,26 @@
 		<p>
         
         <form id = "storyText" action = "<?php echo htmlentities( $_SERVER['PHP_SELF'] ); ?>" method = "POST">
-            <label for = "title">Title</label> <br>
-            <input id = "titleBox" type = "text" name = "title"/> <br>							<!--box to enter title-->
-			
+            <!--box to enter title-->
+			<label for = "title">Title</label> <br>
+            <input id = "titleBox" type = "text" name = "title"
+				   maxlength = "255" autocomplete = "off" required autofocus> <br>	
 			<br>
             
-			<label for = "text">Text (optional)</label> <br>
-            <textarea id = "textBox" name = "text" cols = 500 rows = 10/> </textarea> <br> 		<!--box to add text-->
-            
+			<!--box to add text-->
+			<label for = "text">Text <i>(optional)</i> </label> <br>
+            <textarea id = "textBox" name = "text"
+					  cols = 500 rows = 10 autocomplete = "off"> </textarea> <br> 		
 			<br>
             
-			<label for = "link">Link (optional)</label> <br>
-            <textarea id = "linkBox" name = "link" cols = 500 rows = 2/> </textarea> <br> 	    <!--box to to add link-->
-            
+			<!--box to to add link-->
+			<label for = "link">Link <i>(optional)</i> </label> <br>
+            <textarea id = "linkBox" name = "link" 
+					  cols = 500 rows = 2 autocomplete = "off"> </textarea> <br> 	  			 
 			<br>
             
-			<input id = "submit" name = "submit" type = "submit" value = "Submit"/>				<!--submit button-->
+			<!--submit button-->
+			<input id = "submit" name = "submit" type = "submit" value = "Submit">						
 
 		</form>
 		
@@ -48,7 +52,7 @@
 				$link = $_POST['link'];
 				
 				$addStory = $mysqli -> prepare ("insert into stories (user, title, text, link)
-											values ('$user', '$title', '$text', '$link')");
+												values ('$user', '$title', '$text', '$link')");
 				
 				if (!$addStory) {
 					echo "Insert Query Prep Failed: %s\n", $mysqli -> error;

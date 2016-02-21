@@ -26,6 +26,7 @@
         <?php
             require "php_database.php";
 			
+            //displays the selected story (title, text, link, and author)
 			$showStory = $mysqli -> prepare ("select user, title, text, link
 											 from stories
                                              where story_id = '$story_id'");
@@ -36,26 +37,25 @@
 				}
 				
 				$showStory -> execute();
-				$showStory -> bind_result($author, $title, $text, $link);
-				
-				
+				$showStory -> bind_result($storyAuthor, $title, $text, $link);
 				
 				$showStory -> fetch();
-				printf(
-                    "<p id = title>%s</p>
-                    <p id = text>%s</p>
-                    <a id = link href = %s >%s</a> <br> <br>",
-                    $title,
-                    $text,
-                    $link,
-                    $link
+				
+                
+                printf("<p id = title>%s</p>
+                       <p id = text>%s</p>
+                       <a id = link href = %s >%s</a> <br> <br>",
+                       $title,
+                       $text,
+                       $link,
+                       $link
                 );
 				
 				$showStory -> close();
             
  
-       
-            if ($user == $author) {
+            //checks if user wrote the story, if true gives edit and delete options
+            if ($user == $storyAuthor) {
                 include "editButton.html";
             }
             
@@ -66,7 +66,9 @@
                 include "newComment.php";
             }
             
-            $showComments = $mysqli -> prepare ("select user, comment
+            
+            //displays all comments on selected story
+            $showComments = $mysqli -> prepare ("select comment_id, user, comment
                                                 from comments
                                                 where story_id = '$story_id'");
 				
@@ -76,15 +78,21 @@
 				}
 				
 				$showComments -> execute();
-				$showComments -> bind_result($user, $comment);
+				$showComments -> bind_result($comment_id, $commentAuthor, $comment);
 			
                 while ($showComments -> fetch()) {
 					printf(
                         "<p id = user>%s</p>
                         <p id = comment>%s</p> <br>",
-                        $user,
+                        $commentAuthor,
                         $comment
                     );
+                    
+                    //checks if user wrote the comment, if true gives edit and delete options
+                    if ($user == $commentAuthor) {
+                        include "commentButtons.php";
+                    }
+                    
 				}
 				
 				$showComments -> close();

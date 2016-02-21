@@ -18,18 +18,19 @@
 		<!--self-submitting form so that when incorrect username is entered, returns to same page-->
 			
 			<p>
-				Please enter your username and password.
+				Please enter your username and password. <br>
                 <br>
+				
+				<!--box to enter username-->
+                <input type = "text" name = "username" placeholder = "Username" required autofocus> <br>
                 <br>
-                <label for="password">Username:</label>
-                <input type = "text" name = "username"/> 	<!--box to enter username-->
+				
+                <!--box to enter password-->
+                <input type = "password" name = "password" placeholder = "Password" required> <br>
 				<br>
-                <br>
-                <label for="password">Password:</label>
-                <input type = "password" name = "password"/> 	<!--box to enter password-->
-                <br>
-				<br>
-				<input type = "submit" value = "Login"/>			<!--login button-->
+				
+				<!--login button-->
+				<input type = "submit" value = "Login">						
 			</p>
 		</form>
 		

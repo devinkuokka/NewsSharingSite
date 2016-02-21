@@ -21,21 +21,26 @@
 		<!--self-submitting form so that when incorrect username/password is entered, returns to same page-->
 			
 			<p>
-                Please enter a username and password.
+                Please enter a username and password.<br>
 				<br>
+				
+				<!--box to enter username-->
+				<input type = "text" name = "username" placeholder = "Username"
+					   maxlength = "20" autocomplete = "off" required autofocus> <br>
 				<br>
-				<label for="username">Username:</label>
-				<input type = "text" name = "username"/> 				<!--box to enter username-->
-				<br>
-				<br>
-				<label for="password">Password:</label>
-				<input type = "password" name = "password"/> 			<!--box to enter password-->
+				
+				<!--box to enter password-->
+				<input type = "password" name = "password" placeholder = "Password"
+					   maxlength = "13" autocomplete = "off" required> 			
                 <br>
-				<label for="confirmpassword">Confirm Password:</label>
-				<input type = "password" name = "confirmPassword"/> 	<!--box to confirm password-->
-                <br>
+				
+				<!--box to confirm password-->
+				<input type = "password" name = "confirmPassword" placeholder = "Confirm Password"
+					   maxlength = "13" autocomplete = "off" required> <br>
 				<br>
-				<input type = "submit" value = "Submit"/>			<!--Submit button-->
+				
+				<!--Submit button-->
+				<input type = "submit" value = "Submit">								
 			</p>
 		</form>
 		

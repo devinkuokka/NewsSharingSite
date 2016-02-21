@@ -5,11 +5,16 @@
 ?>
 
 <html>
+        <br>
         <form id = "comment" action = "postComment.php" method = "POST">
-			<label for = "comment">Comment</label> <br>
-            <textarea id = "comment" name = "comment" cols = 100 rows = 5/> </textarea> <br> 		<!--box to add text-->
+			<!--box to add text-->
+            <label for = "comment">Comment</label> <br>
+            <textarea id = "comment" name = "comment" placeholder = "Enter comment here..."
+                      cols = 100 rows = 5 autocomplete="off" required autofocus> </textarea> <br> 		
 			<br>
-			<input id = "submit" name = "submit" type = "submit" value = "Submit"/>				<!--submit button-->
+            
+            <!--submit button-->
+			<input id = "submit" name = "submit" type = "submit" value = "Submit">				
 
 		</form>
 </html>
