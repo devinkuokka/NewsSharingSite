@@ -79,6 +79,7 @@
                     include "newComment.php";
                 }
                 
+               echo "<p id = commentHeader>Comments</p>";
                 
                 //displays all comments on selected story
                 $showComments = $mysqli -> prepare ("select comment_id, user, comment
