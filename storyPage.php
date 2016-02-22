@@ -13,6 +13,17 @@
         <title>STORY</title>
 		
 		<link rel = "stylesheet" type = "text/css" href = "storyPageStyle.css">
+        <script type = "text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                buttons = document.getElementsByClassName("editButton");
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].onclick = function() {
+                        window.location = "editCommentPage.php?comment_id=" + this.dataset.commentid;
+                    }
+                }
+            })
+        </script>
+
     </head>
 	
     <body>
@@ -96,8 +107,6 @@
                     
 				}
 				
-                echo $comment_id;
-                
 				$showComments -> close();
 		?>
     </body>

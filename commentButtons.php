@@ -4,27 +4,25 @@
 	
 ?>
 
-<script type = "text/javascript">
-    var comment_id = "<?php echo $comment_id ?>";
-</script>
-
 <!DOCTYPE html>
 <html>
     <body>
 		
 		<!--logout button-->
-		<input id = "editButton"
-               name = "<?php echo 'editPage.php?comment_id=',$comment_id; ?>"
-			   type = "button"                              
+        <input id = "<?php echo "editButton".$comment_id ?>";
+               data-commentid = "<?php echo $comment_id ?>";
+               type = "button"
+               class= "editButton"
 			   value = "Edit"
-			   onclick = "window.location = 'editCommentRedirect.php'"
 		/> <br>
 		
 		<!--new story button-->
-		<input id = "deleteButton"
-			   type = "button"                              
+		<input id = "<?php echo "deleteButton".$comment_id ?>";
+               data-commentid = "<?php echo $comment_id ?>";
+			   type = "button"
+               class= "deleteButton"
 			   value = "Delete"
-			   onclick = "window.location = 'deleteCommentScript.php?comment_id='+comment_id;"
+			   
 		/>
 	</body>
 </html>

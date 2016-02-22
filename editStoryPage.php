@@ -68,7 +68,7 @@
 			$link = "";
 			
             //checks the story has a title
-			if (!empty ($_POST['title']) && $_POST['title'] !== " ") {		
+			if (!empty ($_POST['title']) && preg_grep("[^\s]", $_POST['title']).length > 0) {		
                 $title = $_POST['title'];
 				$text = $_POST['text'];	
 				$link = $_POST['link'];

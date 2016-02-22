@@ -21,7 +21,7 @@
             require "php_database.php";
 			
             //checks the story has a title
-			if (!empty ($_POST['comment']) && $_POST['comment'] !== " ") {		
+			if (!empty ($_POST['comment']) && preg_grep("[^\s]", $_POST['comment']).length > 0) {		
 				
 				$editComment = $mysqli -> prepare ("update comments
                                                     set comment = '$comment'
