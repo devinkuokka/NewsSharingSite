@@ -66,6 +66,11 @@ body {
     font-size: 12pt;
 }
 
+#commentHeader{
+    font-size: 12pt;
+    font-weight: bold;
+}
+
 #titleBox {
     text-align: left;
     width: 60vw;

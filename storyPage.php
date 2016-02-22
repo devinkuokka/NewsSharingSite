@@ -86,20 +86,20 @@
                                                     from comments
                                                     where story_id = '$story_id'");
                     
-                    if (!$showComments) {
-                        printf("Select Query Prep Failed: %s\n", $mysqli -> error);
-                        exit;
-                    }
-                    
-                    $showComments -> execute();
-                    $showComments -> bind_result($comment_id, $commentAuthor, $comment);
+                if (!$showComments) {
+                    printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+                    exit;
+                }
                 
-                    while ($showComments -> fetch()) {
-                        printf("<a href = 'commentPage.php?comment_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
-                            $comment_id, $comment, $commentAuthor);
-                    }
-                    
-                    $showComments -> close();
+                $showComments -> execute();
+                $showComments -> bind_result($comment_id, $commentAuthor, $comment);
+            
+                while ($showComments -> fetch()) {
+                    printf("<a href = 'commentPage.php?comment_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
+                        $comment_id, $comment, $commentAuthor);
+                }
+                
+                $showComments -> close();
             ?>
             
         </div>

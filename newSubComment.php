@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	$user = $_SESSION['username'];
-	$story_id = $_SESSION['story_id'];	
+	$story_id = $_SESSION['story_id'];
 ?>
 
 <html>
-        <form id = "comment" action = "postSubComment.php" method = "POST">
+        <form id = "subComment" action = "postSubComment.php" method = "POST">
 			<!--box to add text-->
             <br>
-            <label for = "comment">Comment</label> <br>
-            <textarea id = "commentBox" class = "textinput" name = "comment" placeholder = "Enter comment here..."
+            <label for = "subComment">Sub-Comment</label> <br>
+            <textarea id = "subComment" class = "textinput" name = "subComment" placeholder = "Enter sub-comment here..."
                       cols = 100 rows = 5 autocomplete="off" required autofocus></textarea> <br> 		
 			<br>
             
