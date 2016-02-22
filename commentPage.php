@@ -53,62 +53,90 @@
                                                  from stories
                                                  where story_id = '$story_id'");
                     
-                    if (!$showStory) {
-                        printf("Select Query Prep Failed: %s\n", $mysqli -> error);
-                        exit;
-                    }
-                    
-                    $showStory -> execute();
-                    $showStory -> bind_result($storyAuthor, $title, $text, $link);
-                    
-                    $showStory -> fetch();
-                    
-                    
-                    printf("<span id = title>%s</span>
-                           <span id = user>submitted by %s</span> <br> <br>
-                           <span id = text>%s</span> <br> <br>
-                           <a id = link href = %s >%s</a> <br> <br>",
-                           $title, $user, $text, $link, $link);
-                    
-                    $showStory -> close();
+                if (!$showStory) {
+                    printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+                    exit;
+                }
+                
+                $showStory -> execute();
+                $showStory -> bind_result($storyAuthor, $title, $text, $link);
+                
+                $showStory -> fetch();
+                
+                
+                printf("<span id = title>%s</span>
+                       <span id = user>submitted by %s</span> <br> <br>
+                       <span id = text>%s</span> <br> <br>
+                       <a id = link href = %s >%s</a> <br> <br>",
+                       $title, $user, $text, $link, $link);
+                
+                $showStory -> close();
+                
+                echo "<p id = commentHeader>Comments</p>";
                 
                 //displays all comments on selected story
                 $showComments = $mysqli -> prepare ("select comment_id, user, comment
                                                     from comments
                                                     where story_id = '$story_id'");
                     
-                    if (!$showComments) {
-                        printf("Select Query Prep Failed: %s\n", $mysqli -> error);
-                        exit;
-                    }
-                    
-                    $showComments -> execute();
-                    $showComments -> bind_result($comment_id, $commentAuthor, $comment);
+                if (!$showComments) {
+                    printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+                    exit;
+                }
                 
-                    while ($showComments -> fetch()) {
-                       
-                       //check if comment is comment to edit
-                        if ($comment_id == $commentToEdit_id) {
+                $showComments -> execute();
+                $showComments -> bind_result($comment_id, $commentAuthor, $comment);
+            
+                while ($showComments -> fetch()) {
+                   
+                   //check if comment is comment to edit
+                    if ($comment_id == $commentToEdit_id) {
+                    
+                        printf("<a href = 'storyPage.php?story_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
+                            $story_id, $comment, $commentAuthor);
                         
-                            printf("<a href = 'storyPage.php?story_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
-                                $story_id, $comment, $commentAuthor);
-                            
-                            //include "subCommentButton.html";
-                            
-                            if ($user == $commentAuthor) {
-                                $_SESSION['commentToEdit'] = $comment;
-                                include "commentButtons.html";
-                                echo "<br><br>";
-                            }
                         
-                        } else {
-                            printf("<a href = 'commentPage.php?comment_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
-                                $comment_id, $comment, $commentAuthor);
+                        //checks if user wrote the comment, if true gives edit and delete options
+                        if ($user == $commentAuthor) {
+                            $_SESSION['commentToEdit'] = $comment;
+                            include "commentButtons.html";
+                            echo "<br><br>";
                         }
-                    
+                        
+                        //displays all subcomments on selected comment
+                        //$showSubComments = $mysqli -> prepare ("select subComment_id, user, subComment
+                        //                                       from subComments
+                        //                                       where comment_id = $commentToEdit_id");
+                        //    
+                        //if (!$showSubComments) {
+                        //    printf("Select Query1 Prep Failed: %s\n", $mysqli -> error);
+                        //    exit;
+                        //}
+                        //
+                        //$showSubComments -> execute();
+                        //$showSubComments -> bind_result($subComment_id, $subCommentAuthor, $subComment);
+                        //
+                        //while ($showSubComments -> fetch()) {
+                        //    printf("<a href = 'subCommentPage.php?subComment_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
+                        //        $subComment_id, $subComment, $subCommentAuthor);
+                        //}
+                        //
+                        //$showSubComments -> close();
+                            
+                    } else {
+                        printf("<a href = 'commentPage.php?comment_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
+                            $comment_id, $comment, $commentAuthor);
                     }
-                    
-                    $showComments -> close();
+                
+                }
+                        
+                $showComments -> close();
+                        
+                //if registered user, allows to post sub comment on comment
+                //if ($user !== null) {
+                //    include "newSubComment.php";
+                //}
+                         
             ?>
             
         </div>
