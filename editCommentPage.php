@@ -2,9 +2,10 @@
 	session_start();
 	$user = $_SESSION['username'];
     $story_id = $_SESSION['story_id'];
-    $commentToEdit_id = $_GET['comment_id'];
     
-    echo $commentToEdit_id;
+    $commentToEdit_id = $_SESSION['commentToEdit_id'];
+    $commentToEdit = $_SESSION['commentToEdit'];
+    
 ?>
 
 <!DOCTYPE html>
@@ -13,14 +14,18 @@
         <meta charset = "UTF-8">
         <title>EDIT COMMENT</title>
 		
-		<link rel = "stylesheet" type = "text/css" href = "storyPageStyle.css">
+		<link rel="stylesheet" type="text/css" href="stylingSheet.css">
         
         <script type = "text/javascript">
-            var story_id = <?php echo $story_id ?>;
+            var comment_id = <?php echo $commentToEdit_id ?>;
         </script>
     </head>
 	
     <body>
+        <div id = "header">
+			
+		</div>
+        
         <div id = "nav">
 			<!--logout button-->
 			<input id = "logoutButton"
@@ -35,72 +40,58 @@
 				   class = "button"
 				   type = "button"                              
 				   value = "Go Back"
-				   onclick = "window.location = 'storyPage.php?story_id='+story_id"
+				   onclick = "window.location = 'commentPage.php?comment_id='+comment_id"
 			/>
 		</div>
         
+        <div id = "leftSection">
+            <form id = "comment" action = "<?php echo htmlentities( $_SERVER['PHP_SELF'] ); ?>" method = "POST">
+			<!--box to add text-->
+            <textarea id = "commentBox" class = "textinput" name = "comment"
+                      cols = 100 rows = 5 autocomplete="off" required autofocus><?php echo $commentToEdit; ?></textarea> <br> 		
+			<br>
+            
+            <!--submit button-->
+			<input id = "update" class = "button" name = "update" type = "submit" value = "Update">				
+
+		</form>
+        
         <?php
             require "php_database.php";
-			
-            //displays the selected story (title, text, link, and author)
-			$showStory = $mysqli -> prepare ("select user, title, text, link
-											 from stories
-                                             where story_id = '$story_id'");
-				
-				if (!$showStory) {
-					printf("Select Query Prep Failed: %s\n", $mysqli -> error);
-					exit;
-				}
-				
-				$showStory -> execute();
-				$showStory -> bind_result($storyAuthor, $title, $text, $link);
-				
-				$showStory -> fetch();
-				
+            
+            //checks that comment has content
+            $isBlank = preg_replace('/\s+/', '', $_POST['comment']);
+            
+			if (!empty ($_POST['comment']) && strlen($isBlank) > 0) {		
+				$comment = $_POST['comment'];
                 
-                printf("<p id = title>%s</p>
-                       <p id = text>%s</p>
-                       <a id = link href = %s >%s</a> <br> <br>",
-                       $title,
-                       $text,
-                       $link,
-                       $link
-                );
+				$editComment = $mysqli -> prepare ("update comments
+                                                    set comment = '$comment'
+                                                    where comment_id = '$commentToEdit_id'");
 				
-				$showStory -> close();
-   
-   
-            //displays all comments on selected story
-            $showComments = $mysqli -> prepare ("select comment_id, user, comment
-                                                from comments
-                                                where story_id = '$story_id'");
+				if (!$editComment) {
+					echo "Insert Query Prep Failed: %s\n", $mysqli -> error;
+					exit;
+					
+				} else { 
+					$editComment -> bind_param ('s', $comment);
+					$editComment -> execute();
+					$editComment -> close();
 				
-				if (!$showComments) {
-					printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+					header("Location: commentPage.php?comment_id=" . $commentToEdit_id);		//redirects back to comment page
 					exit;
 				}
-				
-				$showComments -> execute();
-				$showComments -> bind_result($comment_id, $commentAuthor, $comment);
+			}
 			
-                while ($showComments -> fetch()) {
-					
-                    //check if comment is comment to edit
-                    if ($comment_id == $commentToEdit_id) {
-                        $_SESSION['comment_id'] = $comment_id;
-                        include "editCommentScript.php";
-                        echo "<br><br>";
-                    
-                    } else {
-                        printf(
-                            "<p id = comment>%s<br>%s</p>",
-                            $comment,
-                            $commentAuthor
-                        );
-                    }
-				}
+			if (isset ($_POST['update']) && empty ($_POST['comment'])) {
+				printf ("<p id = warning>You cannot sumbit a blank comment.<p>");
+				exit;
+			}
 				
-				$showComments -> close();
+			
 		?>
+  
+   
+        </div>
     </body>
 </html>
