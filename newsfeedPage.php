@@ -14,7 +14,7 @@
 	
     <body>
 		<div id = "header">
-			<h>NEWSFEED</h>
+			<h1>NEWSFEED</h1>
 		</div>
 		
 		<div id = "nav">

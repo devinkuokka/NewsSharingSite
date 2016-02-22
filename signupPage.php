@@ -13,7 +13,7 @@
     </head>
 	
 	<div id = "header">
-		<h>Join Our Fam!</h>
+		<h1>Join Our Fam!</h1>
 	</div>
     <body>
 		<div id = "imageSection">
@@ -55,14 +55,13 @@
 				if (isset ($_POST['username']) && isset ($_POST['password']) && isset ($_POST['confirmPassword'])) {		
 					
 					$username = $_POST['username'];			
-					$password = $_POST['password'];
+					$passwordHash = password_hash($_POST['password'],PASSWORD_DEFAULT);
 					$confirmPassword = $_POST['confirmPassword'];
-					
 					//check that username is valid
 					
 					
 					//check that password and confirm password match
-					if ($password !== $confirmPassword) {
+					if (password_verify('$confirmPassword', $passwordHash)) {
 						echo "<p>Passwords do not match. Please try again.</p>";
 						exit;
 					}
@@ -92,7 +91,7 @@
 					} 
 					
 					$addUser = $mysqli -> prepare ("insert into login_info (username, password)
-												   values ('$username', '$password')");
+												   values ('$username', '$passwordHash')");
 					
 					if (!$addUser) {
 						echo "Insert Query Prep Failed: %s\n", $mysqli->error;

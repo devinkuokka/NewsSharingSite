@@ -8,7 +8,7 @@
 	
     <body>
 		<div id = "header">
-			<h> Betterit (Reddit 2.0)</h>
+			<h1> Betterit (Reddit 2.0)</h1>
 		</div>
 		
 		<div id = "imageSection">

@@ -8,11 +8,12 @@
 		
 		<link rel = "stylesheet" type = "text/css" href = "stylingSheet.css">
     </head>
-	<div id = "header">
-		<h>Welcome Back!</h>
-	</div>
+	
 	
     <body>
+		<div id = "header">
+		<h1>Welcome Back!</h1>
+	</div>
 		<div id = "imageSection">
 			<form action = "<?php echo htmlentities( $_SERVER['PHP_SELF'] ); ?>" method = "POST">
 			<!--self-submitting form so that when incorrect username is entered, returns to same page-->

@@ -1,0 +1,10 @@
+Carolyn Dean Wolf: 417731
+Devin Kuokka: 438169
+
+http://ec2-54-200-23-97.us-west-2.compute.amazonaws.com/~devin.kuokka/mod3_group/frontPage.php
+http://ec2-54-200-210-175.us-west-2.compute.amazonaws.com/~cdeanwolf/mod3/frontPage.php
+
+*You can use either one
+
+We formatted the website, hid passwords while they were being entered
+
