@@ -8,21 +8,24 @@
         <br>
         <form id = "comment" method = "POST">
 			<!--box to add text-->
-            <textarea id = "comment" name = "comment"
+            <textarea id = "commentBox" class = "textinput" name = "comment"
                       cols = 100 rows = 5 autocomplete="off" required autofocus><?php echo $comment; ?></textarea> <br> 		
 			<br>
             
             <!--submit button-->
-			<input id = "update" name = "update" type = "submit" value = "Update">				
+			<input id = "update" class = "button" name = "update" type = "submit" value = "Update">				
 
 		</form>
         
         <?php
             require "php_database.php";
 			
-            //checks the story has a title
-			if (!empty ($_POST['comment']) && preg_grep("[^\s]", $_POST['comment']).length > 0) {		
-				
+            //checks that comment has content
+            $isBlank = preg_replace('/\s+/', '', $_POST['comment']);
+            
+			if (!empty ($_POST['comment']) && strlen($isBlank) > 0) {		
+				$comment = $_POST['comment'];
+                
 				$editComment = $mysqli -> prepare ("update comments
                                                     set comment = '$comment'
                                                     where comment_id = '$comment_id'");
@@ -36,8 +39,8 @@
 					$editComment -> execute();
 					$editComment -> close();
 				
-					header("Location: storyPage.php?story_id=" . $story_id);		//redirects back to story page
-					exit;
+					//header("Location: storyPage.php?story_id=" . $story_id);		//redirects back to story page
+					//exit;
 				}
 			}
 			

@@ -25,13 +25,46 @@ body {
     background-color: #eeeeee;
     float: right;
     text-align: center;
+    padding: 20px;
+}
+
+.textinput {
+    font-size: 12pt;
+    width: 200px;
+}
+
+.button {
+    font-size: 12pt;
+    width: 175px;
+}
+
+#warning {
+    color: #C61E1E;
+}
+
+#title{
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+#user{
+    font-size: 10pt;
+    font-style: italic;
+}
+
+#text{
+    font-size: 12pt;
+}
+
+#link{
+    font-size: 12pt;
 }
 
 #titleBox {
     text-align: left;
     width: 60vw;
     height: 5vh;
-    resize: none:
+    resize: none;
     
 }
 
@@ -49,8 +82,15 @@ body {
     resize: none;
 }
 
-input[type = "button"]{
-    width: 150px;
+#commentBox {
+    text-align: left;
+    width: 60vw;
+    height: 10vh;
+    resize: none;
+}
+
+.inlineButton {
+    display: inline-block;
 }
 
 #leftSection{

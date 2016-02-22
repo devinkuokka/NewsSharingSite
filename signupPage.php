@@ -26,22 +26,27 @@
 					<br>
 					
 					<!--box to enter username-->
-					<input type = "text" name = "username" placeholder = "Username"
+					<input type = "text" class = "textinput" name = "username" placeholder = "Username"
 						   maxlength = "20" autocomplete = "off" required autofocus> <br>
 					<br>
 					
 					<!--box to enter password-->
-					<input type = "password" name = "password" placeholder = "Password"
+					<input type = "password" class = "textinput" name = "password" placeholder = "Password"
 						   maxlength = "13" autocomplete = "off" required> <br> 			
 					<br>
 					
 					<!--box to confirm password-->
-					<input type = "password" name = "confirmPassword" placeholder = "Confirm Password"
+					<input type = "password" class = "textinput" name = "confirmPassword" placeholder = "Confirm Password"
 						   maxlength = "13" autocomplete = "off" required> <br>
 					<br>
 					
 					<!--Submit button-->
-					<input type = "submit" value = "Submit">								
+					<input id = "submit" class = "button" type = "submit" value = "Submit">	<br>
+					<br>
+					
+					<!--go back button-->
+					<input id = "backButton" class = "button" type = "button" value = "Go Back"
+						   onclick = "window.location = 'frontPage.php'"/>
 				</p>
 			</form>
 			

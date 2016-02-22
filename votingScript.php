@@ -15,15 +15,11 @@
     
     
     if ($_SESSION['username'] == null) {
-        echo 'You must be logged in to vote';
+        printf("<p id = error>You must be logged in to vote!</p>");
         exit;
     }
 
-    include 'mysqlserver.php';
-    $con = mysql_connect($mysql_host, $mysql_username, $mysql_password);
-    if (!$con){
-        die ('Failed to connect to the database');
-    }
+    include 'php_database.php';
     
     mysql_select_db("a6595899_s", $con);
     

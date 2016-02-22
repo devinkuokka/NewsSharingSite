@@ -18,10 +18,6 @@
 		</div>
 		
 		<div id = "nav">
-			<p id = "welcome">
-				Welcome back <?php echo $user;?>
-				<br>
-			</p>
 			<?php
 				if ($user !== null) {
 					include "regUser.html";
@@ -47,7 +43,8 @@
 				$num = 1;
 			
 				while ($showStory -> fetch()) {
-					printf("%s. <a href = 'storyPage.php?story_id=%s' >%s</a> <br> <br>", $num, $story_id, $title);
+					printf("%s. <a href = 'storyPage.php?story_id=%s' >%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
+                           $num, $story_id, $title, $user);
 					$num ++; 
 				}
 				

@@ -22,15 +22,20 @@
 					<br>
 					
 					<!--box to enter username-->
-					<input type = "text" name = "username" placeholder = "Username" required autofocus> <br>
+					<input type = "text" class = "textinput" name = "username" placeholder = "Username" required autofocus> <br>
 					<br>
 					
 					<!--box to enter password-->
-					<input type = "password" name = "password" placeholder = "Password" required> <br>
+					<input type = "password" class = "textinput" name = "password" placeholder = "Password" required> <br>
 					<br>
 					
 					<!--login button-->
-					<input type = "submit" value = "Login">						
+					<input id = "submit" class = "button" type = "submit" value = "Login"> <br>
+					<br>
+					
+					<!--go back button-->
+					<input id = "backButton" class = "button" type = "button" value = "Go Back"
+						   onclick = "window.location = 'frontPage.php'"/>						
 				</p>
 			</form>
 			

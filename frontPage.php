@@ -15,24 +15,25 @@
 			<form>	
 				<!--login button-->
 				<input id = "loginButton"
+					   class = "button"
 					   type = "button"
 					   value = "Login"
 					   onclick = "window.location = 'loginPage.php'"
-				/> <br>	
+				/> <br> <br>	
 			   
 				<!--sign up button-->
 				<input id = "signupButton"
+					   class = "button"
 					   type = "button"                              
 					   value = "Sign Up"
-					  
 					   onclick = "window.location = 'signupPage.php'"
-				/> <br><br>
+				/> <br> <br>
 				
 				<!--continue as guest button-->
 				<input id = "guestButton"
+					   class = "button"
 					   type = "button"                              
 					   value = "Continue as Guest"
-					   
 					   onclick = "window.location = 'newsfeedPage.php'"
 				/>
 			</form>

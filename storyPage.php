@@ -12,7 +12,8 @@
         <meta charset = "UTF-8">
         <title>STORY</title>
 		
-		<link rel = "stylesheet" type = "text/css" href = "storyPageStyle.css">
+		<link rel="stylesheet" type="text/css" href="stylingSheet.css">
+        
         <script type = "text/javascript">
             document.addEventListener('DOMContentLoaded', function () {
                 buttons = document.getElementsByClassName("editButton");
@@ -27,87 +28,109 @@
     </head>
 	
     <body>
-        <!--newsfeed button-->
-		<input id = "newsfeedButton"
-			   type = "button"                              
-			   value = "Newsfeed"
-			   onclick = "window.location = 'newsfeedPage.php'"
-		/> <br>
+        <div id = "header">
+			
+		</div>
         
-        <?php
-            require "php_database.php";
+        <div id = "nav">
+			<!--logout button-->
+			<input id = "logoutButton"
+				   class = "button"
+				   type = "button"                              
+				   value = "Logout"
+				   onclick = "window.location = 'logoutScript.php'"
+			/> <br> <br>
 			
-            //displays the selected story (title, text, link, and author)
-			$showStory = $mysqli -> prepare ("select user, title, text, link
-											 from stories
-                                             where story_id = '$story_id'");
-				
-				if (!$showStory) {
-					printf("Select Query Prep Failed: %s\n", $mysqli -> error);
-					exit;
-				}
-				
-				$showStory -> execute();
-				$showStory -> bind_result($storyAuthor, $title, $text, $link);
-				
-				$showStory -> fetch();
-				
+			<!--go back button-->
+			<input id = "backButton"
+				   class = "button"
+				   type = "button"                              
+				   value = "Go Back"
+				   onclick = "window.location = 'newsfeedPage.php'"
+			/>
+		</div>
+        
+        <div id = "leftSection">
+            <?php
+                require "php_database.php";
                 
-                printf("<p id = title>%s</p>
-                       <p id = text>%s</p>
-                       <a id = link href = %s >%s</a> <br> <br>",
-                       $title,
-                       $text,
-                       $link,
-                       $link
-                );
-				
-				$showStory -> close();
-            
- 
-            //checks if user wrote the story, if true gives edit and delete options
-            if ($user == $storyAuthor) {
-                include "storyButtons.html";
-            }
-            
-            
-            
-            //FIX ADDING COMMENT!!!!
-            if ($user !== null) {
-                include "newComment.php";
-            }
-            
-            
-            //displays all comments on selected story
-            $showComments = $mysqli -> prepare ("select comment_id, user, comment
-                                                from comments
-                                                where story_id = '$story_id'");
-				
-				if (!$showComments) {
-					printf("Select Query Prep Failed: %s\n", $mysqli -> error);
-					exit;
-				}
-				
-				$showComments -> execute();
-				$showComments -> bind_result($comment_id, $commentAuthor, $comment);
-			
-                while ($showComments -> fetch()) {
-					printf(
-                        "<p id = comment>%s<br>%s</p>",
-                        $comment,
-                        $commentAuthor
-                    );
+                //displays the selected story (title, text, link, and author)
+                $showStory = $mysqli -> prepare ("select user, title, text, link
+                                                 from stories
+                                                 where story_id = '$story_id'");
                     
-                    //checks if user wrote the comment, if true gives edit and delete options
-                    if ($user == $commentAuthor) {
-                        $_SESSION['comment_id'] = $comment_id;
-                        include "commentButtons.php";
-                        echo "<br><br>";
+                    if (!$showStory) {
+                        printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+                        exit;
                     }
                     
-				}
-				
-				$showComments -> close();
-		?>
+                    $showStory -> execute();
+                    $showStory -> bind_result($storyAuthor, $title, $text, $link);
+                    
+                    $showStory -> fetch();
+                    
+                    
+                    printf("<span id = title>%s</span>
+                           <span id = user>submitted by %s</span> <br> <br>
+                           <span id = text>%s</span> <br> <br>
+                           <a id = link href = %s >%s</a> <br> <br>",
+                           $title, $user, $text, $link, $link);
+                    
+                    $showStory -> close();
+                
+     
+                //checks if user wrote the story, if true gives edit and delete options
+                if ($user == $storyAuthor) {
+                    include "storyButtons.html";
+                }
+                
+                
+                //if registered user, allows to post comment on story
+                if ($user !== null) {
+                    include "newComment.php";
+                }
+                
+                
+                //displays all comments on selected story
+                $showComments = $mysqli -> prepare ("select comment_id, user, comment
+                                                    from comments
+                                                    where story_id = '$story_id'");
+                    
+                    if (!$showComments) {
+                        printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+                        exit;
+                    }
+                    
+                    $showComments -> execute();
+                    $showComments -> bind_result($comment_id, $commentAuthor, $comment);
+                
+                    while ($showComments -> fetch()) {
+                        printf(
+                            "<span id = text>%s<br></span><span id = user>%s</span> <br>",
+                            $comment,
+                            $commentAuthor
+                        );
+                        
+                        //subcomment button
+                        include "subCommentButton.php";
+                        
+                        //checks if user wrote the comment, if true gives edit and delete options
+                        if ($user == $commentAuthor) {
+                            $_SESSION['comment_id'] = $comment_id;
+                            include "commentButtons.php";
+                            echo "<br><br>";
+                        }
+                        
+                    }
+                    
+                    $showComments -> close();
+            ?>
+            
+        </div>
+		
+		<div id = "footer">
+			<i>Copyright</i> &copy; Carolyn Dean Wolf & Devin Kuokka
+		</div>
+            
     </body>
 </html>

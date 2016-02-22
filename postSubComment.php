@@ -5,9 +5,7 @@
 	
 	require "php_database.php"; 
 	
-	$isBlank = preg_replace('/\s+/', '', $_POST['comment']);
-	
-    if (!empty ($_POST['comment']) && strlen($isBlank) > 0) {		
+    if (!empty ($_POST['comment']) && $_POST['comment'] !== " ") {		
         $comment = $_POST['comment'];	
         
         $addComment = $mysqli -> prepare ("insert into comments (user, story_id, comment)

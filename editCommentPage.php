@@ -2,7 +2,9 @@
 	session_start();
 	$user = $_SESSION['username'];
     $story_id = $_SESSION['story_id'];
-    $commentToEdit_id = $_SESSION['comment_id'];
+    $commentToEdit_id = $_GET['comment_id'];
+    
+    echo $commentToEdit_id;
 ?>
 
 <!DOCTYPE html>
@@ -12,15 +14,30 @@
         <title>EDIT COMMENT</title>
 		
 		<link rel = "stylesheet" type = "text/css" href = "storyPageStyle.css">
+        
+        <script type = "text/javascript">
+            var story_id = <?php echo $story_id ?>;
+        </script>
     </head>
 	
     <body>
-        <!--newsfeed button-->
-		<input id = "newsfeedButton"
-			   type = "button"                              
-			   value = "Newsfeed"
-			   onclick = "window.location = 'newsfeedPage.php'"
-		/> <br>
+        <div id = "nav">
+			<!--logout button-->
+			<input id = "logoutButton"
+				   class = "button"
+				   type = "button"                              
+				   value = "Logout"
+				   onclick = "window.location = 'logoutScript.php'"
+			/> <br> <br>
+			
+			<!--go back button-->
+			<input id = "backButton"
+				   class = "button"
+				   type = "button"                              
+				   value = "Go Back"
+				   onclick = "window.location = 'storyPage.php?story_id='+story_id"
+			/>
+		</div>
         
         <?php
             require "php_database.php";

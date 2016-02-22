@@ -5,7 +5,7 @@
 ?>
 
 <html>
-        <form id = "comment" action = "postComment.php" method = "POST">
+        <form id = "comment" action = "postSubComment.php" method = "POST">
 			<!--box to add text-->
             <br>
             <label for = "comment">Comment</label> <br>
@@ -19,3 +19,5 @@
 
 		</form>
 </html>
+
+
