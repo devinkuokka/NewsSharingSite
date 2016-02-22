@@ -6,15 +6,16 @@
         <meta charset = "UTF-8">
         <title>NEW STORY</title>
 		
-		<link rel="stylesheet" type="text/css" href="newStoryPageStyle.css">
+		<link rel="stylesheet" type="text/css" href="stylingSheet.css">
     </head>
 	
     <body>
-        
+       <div id = "header">
         <p id = "pageTitle">
-			New Story <br>
+			Add Your Story! <br>
 		<p>
-        
+	   </div>
+        <div id = "leftSection">
         <form id = "storyText" action = "<?php echo htmlentities( $_SERVER['PHP_SELF'] ); ?>" method = "POST">
             <!--box to enter title-->
 			<label for = "title">Title</label> <br>
@@ -25,7 +26,7 @@
 			<!--box to add text-->
 			<label for = "text">Text <i>(optional)</i> </label> <br>
             <textarea id = "textBox" name = "text" placeholder = "Add text here..."
-					  cols = 500 rows = 10 autocomplete = "off"></textarea> <br> 		
+					   autocomplete = "off"></textarea> <br> 		
 			<br>
             
 			<!--box to to add link-->
@@ -75,6 +76,10 @@
 				
 			
 		?>
-        
+		</div>
+		 
+		 <div id = "footer">
+			<i>Copyright</i> &copy; Carolyn Dean Wolf & Devin Kuokka
+		</div>
     </body>
 </html>

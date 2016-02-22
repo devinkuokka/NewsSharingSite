@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #004055;
+}
+
+#header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #3D3B3B;
+    color: white;
+    text-align: center;
+    font-weight:bold;
+    font-size: xx-large;
+    width: 100vw;
+}
+
+#nav {
+    height: 100vh;
+    width: 200px;
+    background-color: #eeeeee;
+    float: right;
+    text-align: center;
+}
+
+#titleBox {
+    text-align: left;
+    width: 60vw;
+    height: 5vh;
+    resize: none:
+    
+}
+
+#textBox {
+    text-align: left;
+    width: 60vw;
+    height: 20vh;
+    resize: none;
+}
+
+#linkBox {
+    text-align: left;
+    width: 60vw;
+    height: 5vh;
+    resize: none;
+}
+
+input[type = "button"]{
+    width: 150px;
+}
+
+#leftSection{
+    text-align: left;
+    position: relative;
+    height: 100vh;
+    width: 80vw;
+    position: absolute;
+    padding-left: 25px;
+    padding-top: 25px;
+    text-size: 24pt;
+}
+
+#centerSection{
+    text-align: center;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    text-size: medium;
+}
+
+#imageSection{
+    background-image: url("kitten.jpg");
+    background-size: auto;
+    text-align: center;
+    position: relative;
+    height: 100vh;
+    padding-top: 100px;
+    width: 100vw;
+}
+#footer {
+    background-color: #3D3B3B;
+    color: white;
+    text-align: center;
+    font-size:medium;
+    position: absolute;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    bottom: 0;
+    width: 100vw;
+}
