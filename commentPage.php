@@ -52,7 +52,7 @@
                 $showStory = $mysqli -> prepare ("select user, title, text, link
                                                  from stories
                                                  where story_id = '$story_id'");
-                    
+          
                 if (!$showStory) {
                     printf("Select Query Prep Failed: %s\n", $mysqli -> error);
                     exit;
@@ -74,6 +74,25 @@
                 
                 echo "<p id = commentHeader>Comments</p>";
                 
+                    if (!$showStory) {
+                        printf("Select Query Prep Failed: %s\n", $mysqli -> error);
+                        exit;
+                    }
+                    
+                    $showStory -> execute();
+                    $showStory -> bind_result($storyAuthor, $title, $text, $link);
+                    
+                    $showStory -> fetch();
+                    
+                    
+                    printf("<span id = title>%s</span>
+                           <span id = user>submitted by %s</span> <br> <br>
+                           <span id = text>%s</span> <br> <br>
+                           <a id = link href = %s >%s</a> <br> <br> <hr>",
+                           $title, $user, $text, $link, $link);
+                    
+                    $showStory -> close();
+                
                 //displays all comments on selected story
                 $showComments = $mysqli -> prepare ("select comment_id, user, comment
                                                     from comments
@@ -94,7 +113,17 @@
                     
                         printf("<a href = 'storyPage.php?story_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
                             $story_id, $comment, $commentAuthor);
-                        
+  
+                            printf("<a href = 'storyPage.php?story_id=%s'>%s</a> <span id = 'user'>submitted by %s</span> <br> <br>",
+                                $story_id, $comment, $commentAuthor);
+                            
+                            //include "subCommentButton.html";
+                            
+                            if ($user == $commentAuthor) {
+                                $_SESSION['commentToEdit'] = $comment;
+                                include "commentButtons.html";
+                                echo "<br>";
+                            }
                         
                         //checks if user wrote the comment, if true gives edit and delete options
                         if ($user == $commentAuthor) {

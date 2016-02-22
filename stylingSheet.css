@@ -2,30 +2,36 @@ body {
     margin: 0;
     height: 100%;
     width: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow-x: scroll;
     font-family: Helvetica, Arial, sans-serif;
     color: #004055;
 }
 
 #header {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
     background-color: #3D3B3B;
     color: white;
     text-align: center;
     font-weight:bold;
     font-size: xx-large;
+    position: fixed;
     width: 100vw;
+    height: 10vh;
+    z-index: 1;
 }
 
 #nav {
     height: 100vh;
+    top: 20vh;
     width: 200px;
     background-color: #eeeeee;
-    float: right;
+    right: 0;
     text-align: center;
-    padding: 20px;
+    padding-top: 20px;
+    position: fixed;
+
 }
 
 .textinput {
@@ -73,6 +79,21 @@ body {
     
 }
 
+#storyButtons, #commentButton {
+    float: right;
+}
+
+#commentButtons {
+    float: right;
+}
+
+hr {
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
 #textBox {
     text-align: left;
     width: 60vw;
@@ -89,7 +110,7 @@ body {
 
 #commentBox {
     text-align: left;
-    width: 60vw;
+    width: 40vw;
     height: 10vh;
     resize: none;
 }
@@ -102,28 +123,29 @@ body {
     text-align: left;
     position: relative;
     height: 100vh;
+    top: 20vh;
     width: 80vw;
     position: absolute;
     padding-left: 25px;
     padding-top: 25px;
-    text-size: 24pt;
 }
 
 #centerSection{
     text-align: center;
     position: relative;
     height: 100vh;
+    top: 20vh;
     width: 100vw;
     position: absolute;
-    text-size: medium;
 }
 
 #imageSection{
     background-image: url("kitten.jpg");
     background-size: auto;
     text-align: center;
-    position: relative;
+    position: absolute;
     height: 100vh;
+    top: 20vh;
     padding-top: 100px;
     width: 100vw;
 }
@@ -132,7 +154,7 @@ body {
     color: white;
     text-align: center;
     font-size:medium;
-    position: absolute;
+    position: fixed;
     padding-top: 10px;
     padding-bottom: 10px;
     bottom: 0;

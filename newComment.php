@@ -16,6 +16,6 @@
             <!--submit button-->
 			<input id = "submit" class = "button" name = "submit" type = "submit" value = "Submit">	<br>
             <br>
-
 		</form>
+		<hr>
 </html>
