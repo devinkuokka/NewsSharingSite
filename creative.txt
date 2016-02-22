@@ -6,5 +6,27 @@ http://ec2-54-200-210-175.us-west-2.compute.amazonaws.com/~cdeanwolf/mod3/frontP
 
 *You can use either one
 
-We formatted the website, hid passwords while they were being entered
+Creative Portion:
+- formatted the website in css to have header, footer and side navigation bar on pages
+- when signing up, users are required to confirm password as a safety measure
+- usernames are remembered and provide suggestions when entering
+- passwords are hidden while being entered and are not remembered
+- navigation bar:
+	- always has a logout option
+	- always has a go back button which takes you back to the previous page preserving the story_id or comment_id
+	- these buttons navigaet using javascript
+- adding a comment box to a story is on the same page as the story for user ease and automatically updates story page upon submitting comment
+- all titles and comments (the required feilds for stories and comments respectively) check that a blank string (i.e. "    ") is not entered 
+  both when originally submitted and when editted
+- story link is hyperlinked so you can open link without copying it into url
+- edit story and edit comment pages send back to respective story page and comment page with updates upon submission
+- delete story and delete comment buttons send user back to respective newsfeed and story page with updates upon submission
+- can click comments to link to 'comment page':
+	- gives edit and delete options (only if user is author)
+	- selected comment name can be clicked again to 'close comment page' and go back to story page
+	- other comments on 'comment page' can be clicked to take to their respective comment pages
+- attempted to add subcomments (code is commented out on commentPage.php
+	- having problems connecting to table and did not finish figuring out why...
+	- would have printed subcomments when 'comment page' was selected (that was the point of making a comment page)
+
 
