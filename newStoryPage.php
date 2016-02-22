@@ -18,20 +18,20 @@
         <form id = "storyText" action = "<?php echo htmlentities( $_SERVER['PHP_SELF'] ); ?>" method = "POST">
             <!--box to enter title-->
 			<label for = "title">Title</label> <br>
-            <input id = "titleBox" type = "text" name = "title"
+            <input id = "titleBox" type = "text" name = "title" placeholder = "Enter title here..."
 				   maxlength = "255" autocomplete = "off" required autofocus> <br>	
 			<br>
             
 			<!--box to add text-->
 			<label for = "text">Text <i>(optional)</i> </label> <br>
-            <textarea id = "textBox" name = "text"
-					  cols = 500 rows = 10 autocomplete = "off"> </textarea> <br> 		
+            <textarea id = "textBox" name = "text" placeholder = "Add text here..."
+					  cols = 500 rows = 10 autocomplete = "off"></textarea> <br> 		
 			<br>
             
 			<!--box to to add link-->
 			<label for = "link">Link <i>(optional)</i> </label> <br>
-            <textarea id = "linkBox" name = "link" 
-					  cols = 500 rows = 2 autocomplete = "off"> </textarea> <br> 	  			 
+            <textarea id = "linkBox" name = "link" placeholder = "Add a link here..."
+					  cols = 500 rows = 2 autocomplete = "off"></textarea> <br> 	  			 
 			<br>
             
 			<!--submit button-->

@@ -10,7 +10,7 @@
 			<!--box to add text-->
             <label for = "comment">Comment</label> <br>
             <textarea id = "comment" name = "comment" placeholder = "Enter comment here..."
-                      cols = 100 rows = 5 autocomplete="off" required autofocus> </textarea> <br> 		
+                      cols = 100 rows = 5 autocomplete="off" required autofocus></textarea> <br> 		
 			<br>
             
             <!--submit button-->

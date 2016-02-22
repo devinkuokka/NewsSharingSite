@@ -28,7 +28,7 @@
         <meta charset = "UTF-8">
         <title>EDIT STORY</title>
 		
-		<link rel="stylesheet" type="text/css" href="newStoryPageStyle.css">
+		<link rel = "stylesheet" type = "text/css" href = "newStoryPageStyle.css">
     </head>
 	
     <body>
@@ -57,7 +57,7 @@
 			<br>
             
 			<!--submit button-->
-			<input id = "submit" name = "submit" type = "submit" value = "Submit">						
+			<input id = "update" name = "update" type = "submit" value = "Update">						
 
 		</form>
 		
@@ -86,12 +86,12 @@
 					$editStory -> execute();
 					$editStory -> close();
 				
-					header("Location: storyPage.php?story_id=" . $story_id);		//redirects to newsfeed
+					header("Location: storyPage.php?story_id=" . $story_id);		//redirects back to story page
 					exit;
 				}
 			}
 			
-			if (isset ($_POST['submit']) && empty ($_POST['title'])) {
+			if (isset ($_POST['update']) && empty ($_POST['title'])) {
 				printf ("<p id = warning>Must have a title to submit your story.<p>");
 				exit;
 			}

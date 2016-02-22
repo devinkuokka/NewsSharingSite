@@ -5,17 +5,17 @@
 
     require "php_database.php"; 
 
-    //delete comments associated with story
-    $deleteComments = $mysqli -> prepare ("delete from comments
+    //delete all comments associated with story
+    $deleteAllComments = $mysqli -> prepare ("delete from comments
                                            where story_id = '$story_id'");
 				
-    if (!$deleteComments) {
+    if (!$deleteAllComments) {
         printf("Select Query Prep Failed: %s\n", $mysqli -> error);
         exit;
     }
     
-    $deleteComments -> execute();				
-    $deleteComments -> close();
+    $deleteAllComments -> execute();				
+    $deleteAllComments -> close();
     
     
     //delete story

@@ -3,7 +3,7 @@
 	$user = $_SESSION['username'];
 	$story_id = $_SESSION['story_id'];	
 	
-	
+	require "php_database.php"; 
 	
     if (!empty ($_POST['comment']) && $_POST['comment'] !== " ") {		
         $comment = $_POST['comment'];	
@@ -20,7 +20,7 @@
             $addComment -> execute();
             $addComment -> close();
 			
-			header("Location: storyPage.php?story_id=%s",$story_id);		    //redirects to story page
+			header("Location: storyPage.php?story_id=".$story_id);		    //redirects to story page
 			exit;
 		}
     

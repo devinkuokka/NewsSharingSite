@@ -1,16 +1,15 @@
 <?php
 	session_start();
 	$user = $_SESSION['username'];
-    $pass_story_id = $_GET['story_id'];
-    $_SESSION['story_id'] = $pass_story_id;
     $story_id = $_SESSION['story_id'];
+    $commentToEdit_id = $_SESSION['comment_id'];
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset = "UTF-8">
-        <title>STORY</title>
+        <title>EDIT COMMENT</title>
 		
 		<link rel = "stylesheet" type = "text/css" href = "storyPageStyle.css">
     </head>
@@ -52,21 +51,8 @@
                 );
 				
 				$showStory -> close();
-            
- 
-            //checks if user wrote the story, if true gives edit and delete options
-            if ($user == $storyAuthor) {
-                include "storyButtons.html";
-            }
-            
-            
-            
-            //FIX ADDING COMMENT!!!!
-            if ($user !== null) {
-                include "newComment.php";
-            }
-            
-            
+   
+   
             //displays all comments on selected story
             $showComments = $mysqli -> prepare ("select comment_id, user, comment
                                                 from comments
@@ -81,23 +67,22 @@
 				$showComments -> bind_result($comment_id, $commentAuthor, $comment);
 			
                 while ($showComments -> fetch()) {
-					printf(
-                        "<p id = comment>%s<br>%s</p>",
-                        $comment,
-                        $commentAuthor
-                    );
-                    
-                    //checks if user wrote the comment, if true gives edit and delete options
-                    if ($user == $commentAuthor) {
+					
+                    //check if comment is comment to edit
+                    if ($comment_id == $commentToEdit_id) {
                         $_SESSION['comment_id'] = $comment_id;
-                        include "commentButtons.php";
+                        include "editCommentScript.php";
                         echo "<br><br>";
-                    }
                     
+                    } else {
+                        printf(
+                            "<p id = comment>%s<br>%s</p>",
+                            $comment,
+                            $commentAuthor
+                        );
+                    }
 				}
 				
-                echo $comment_id;
-                
 				$showComments -> close();
 		?>
     </body>

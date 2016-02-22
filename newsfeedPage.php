@@ -9,7 +9,7 @@
         <meta charset = "UTF-8">
         <title>NEWSFEED</title>
 		
-		<link rel="stylesheet" type="text/css" href="newsfeedPageStyle.css">
+		<link rel = "stylesheet" type = "text/css" href = "newsfeedPageStyle.css">
     </head>
 	
     <body>
