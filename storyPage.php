@@ -26,11 +26,10 @@
         </script>
 
     </head>
-	
+	 <div id = "header">
+			<h>  </h>
+	</div>
     <body>
-        <div id = "header">
-			
-		</div>
         
         <div id = "nav">
 			<!--logout button-->
@@ -106,7 +105,7 @@
                 
                     while ($showComments -> fetch()) {
                         printf(
-                            "<span id = text>%s<br></span><span id = user>%s</span> <br>",
+                            "<span id = text>%s<br></span><span id = user>%s</span><br><br>",
                             $comment,
                             $commentAuthor
                         );
@@ -118,7 +117,7 @@
                         if ($user == $commentAuthor) {
                             $_SESSION['comment_id'] = $comment_id;
                             include "commentButtons.php";
-                            echo "<br><br>";
+                            echo "<br>";
                         }
                         
                     }
